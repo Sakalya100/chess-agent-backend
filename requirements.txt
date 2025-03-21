@@ -5,3 +5,4 @@ cairosvg
 pillow
 fastapi
 uvicorn
+fastapi[standard]
