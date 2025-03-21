@@ -5,6 +5,7 @@ from typing import List
 import chess
 import chess.svg
 from autogen import ConversableAgent, register_function
+from fastapi.middleware.cors import CORSMiddleware
 
 version = "v1"
 app = FastAPI(
@@ -16,6 +17,14 @@ app = FastAPI(
     contact={
         "email": "sakalyamitra@gmail.com"
     }
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # or ["http://localhost:3000"] for stricter policy
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 model_provider_map = {"OpenAI":"gpt-4o-mini", "Claude":"claude-3-5-sonnet-20240620", "Mixtral":"mistralai/Mixtral-8x7B-Instruct-v0.1", "Gemini":"gemini-2.0-flash"}
